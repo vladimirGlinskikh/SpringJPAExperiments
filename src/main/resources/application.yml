@@ -1,0 +1,12 @@
+spring:
+  jpa:
+    show-sql: true
+
+
+logging:
+  level:
+    org:
+      hibernate:
+        orm:
+          jdbc:
+            bind: TRACE
