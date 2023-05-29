@@ -9,5 +9,4 @@ public class SpringjpaExperimentsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringjpaExperimentsApplication.class, args);
 	}
-
 }
