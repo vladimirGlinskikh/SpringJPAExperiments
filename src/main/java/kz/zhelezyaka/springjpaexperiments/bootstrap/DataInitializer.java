@@ -3,8 +3,10 @@ package kz.zhelezyaka.springjpaexperiments.bootstrap;
 import kz.zhelezyaka.springjpaexperiments.domain.Book;
 import kz.zhelezyaka.springjpaexperiments.repositories.BookRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+@Profile({"local", "default"})
 @Component
 public class DataInitializer implements CommandLineRunner {
     private final BookRepository bookRepository;
@@ -15,6 +17,7 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        bookRepository.deleteAll();
         Book book1 = new Book(1L,
                 "NGINX Cookbook",
                 "231242w234",
