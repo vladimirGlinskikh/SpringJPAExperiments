@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://172.29.0.1:3307/bookdb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: update
