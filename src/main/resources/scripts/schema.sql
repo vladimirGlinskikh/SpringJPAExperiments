@@ -15,5 +15,10 @@ CREATE TABLE book_seq
     next_val BIGINT
 ) engine = InnoDB;
 
+CREATE TABLE hibernate_seq
+(
+    next_val BIGINT
+)
+
 INSERT INTO book_seq
 VALUES (1);
