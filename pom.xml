@@ -70,6 +70,9 @@
 					<url>jdbc:mysql://172.29.0.1:3307/bookdb?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC</url>
 					<username>root</username>
 					<password>root</password>
+					<outputChangeLogFile>changelog.xml</outputChangeLogFile>
+					<changeSetAuthor>VladimirGlinskikh</changeSetAuthor>
+					<changelogSchemaName>bookdb</changelogSchemaName>
 				</configuration>
 				<dependencies>
 					<dependency>
