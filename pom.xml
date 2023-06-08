@@ -41,9 +41,18 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.liquibase</groupId>-->
+<!--			<artifactId>liquibase-core</artifactId>-->
+<!--		</dependency>-->
 		<dependency>
-			<groupId>org.liquibase</groupId>
-			<artifactId>liquibase-core</artifactId>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+			<version>9.19.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-mysql</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -66,26 +75,26 @@
 					</excludes>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.liquibase</groupId>
-				<artifactId>liquibase-maven-plugin</artifactId>
-				<version>4.2.2</version>
-				<configuration>
-					<url>jdbc:mysql://172.29.0.1:3307/bookdb?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC</url>
-					<username>root</username>
-					<password>root</password>
-					<outputChangeLogFile>changelog.xml</outputChangeLogFile>
-					<changeSetAuthor>VladimirGlinskikh</changeSetAuthor>
-					<changelogSchemaName>bookdb</changelogSchemaName>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>mysql</groupId>
-						<artifactId>mysql-connector-java</artifactId>
-						<version>${mysql.version}</version>
-					</dependency>
-				</dependencies>
-			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>org.liquibase</groupId>-->
+<!--				<artifactId>liquibase-maven-plugin</artifactId>-->
+<!--				<version>4.2.2</version>-->
+<!--				<configuration>-->
+<!--					<url>jdbc:mysql://172.29.0.1:3307/bookdb?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC</url>-->
+<!--					<username>root</username>-->
+<!--					<password>root</password>-->
+<!--					<outputChangeLogFile>changelog.xml</outputChangeLogFile>-->
+<!--					<changeSetAuthor>VladimirGlinskikh</changeSetAuthor>-->
+<!--					<changelogSchemaName>bookdb</changelogSchemaName>-->
+<!--				</configuration>-->
+<!--				<dependencies>-->
+<!--					<dependency>-->
+<!--						<groupId>mysql</groupId>-->
+<!--						<artifactId>mysql-connector-java</artifactId>-->
+<!--						<version>${mysql.version}</version>-->
+<!--					</dependency>-->
+<!--				</dependencies>-->
+<!--			</plugin>-->
 		</plugins>
 	</build>
 

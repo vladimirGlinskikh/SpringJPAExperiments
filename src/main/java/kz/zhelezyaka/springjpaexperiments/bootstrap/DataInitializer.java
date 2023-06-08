@@ -21,19 +21,19 @@ public class DataInitializer implements CommandLineRunner {
         Book book1 = new Book(1L,
                 "NGINX Cookbook",
                 "231242w234",
-                "O'REILLY", null);
+                "O'REILLY");
         Book savedBook1 = bookRepository.save(book1);
 
         Book book2 = new Book(2L,
                 "Principles of Web API Design",
                 "23898237688",
-                "HarperCollins", null);
+                "HarperCollins");
         Book savedBook2 = bookRepository.save(book2);
 
         Book book3 = new Book(3L,
                 "Efficient Linux at the Command Line",
                 "239462938462",
-                "Wiley", null);
+                "Wiley");
         Book savedBook3 = bookRepository.save(book3);
 
         bookRepository.findAll().forEach(book -> {

@@ -8,6 +8,9 @@ spring:
   sql:
     init:
       mode: always
-  liquibase:
+  flyway:
     user: root
     password: root
+#  liquibase:
+#    user: root
+#    password: root
