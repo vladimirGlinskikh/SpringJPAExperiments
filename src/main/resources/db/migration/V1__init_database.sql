@@ -10,15 +10,6 @@ CREATE TABLE book
     PRIMARY KEY (id)
 ) engine = InnoDB;
 
-CREATE TABLE author
-(
-    id         BIGINT NOT NULL,
-    first_name VARCHAR(255),
-    last_name  VARCHAR(255),
-    author_id  BIGINT,
-    PRIMARY KEY (id)
-) engine = InnoDB;
-
 CREATE TABLE book_seq
 (
     next_val BIGINT
