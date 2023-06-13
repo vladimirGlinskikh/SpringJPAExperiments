@@ -1,6 +1,8 @@
 package kz.zhelezyaka.springjpaexperiments.bootstrap;
 
+import kz.zhelezyaka.springjpaexperiments.domain.AuthorUuid;
 import kz.zhelezyaka.springjpaexperiments.domain.Book;
+import kz.zhelezyaka.springjpaexperiments.repositories.AuthorUUIDRepository;
 import kz.zhelezyaka.springjpaexperiments.repositories.BookRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
@@ -10,14 +12,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class DataInitializer implements CommandLineRunner {
     private final BookRepository bookRepository;
+    private final AuthorUUIDRepository authorUUIDRepository;
 
-    public DataInitializer(BookRepository bookRepository) {
+    public DataInitializer(BookRepository bookRepository, AuthorUUIDRepository authorUUIDRepository) {
         this.bookRepository = bookRepository;
+        this.authorUUIDRepository = authorUUIDRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
         bookRepository.deleteAll();
+        authorUUIDRepository.deleteAll();
+
         Book book1 = new Book(1L,
                 "NGINX Cookbook",
                 "231242w234",
@@ -42,5 +48,11 @@ public class DataInitializer implements CommandLineRunner {
                     "Book isbn: " + book.getIsbn() + " |" +
                     "Book publisher: " + book.getPublisher());
         });
+
+        AuthorUuid authorUUID = new AuthorUuid();
+        authorUUID.setFirstName("Vladimir");
+        authorUUID.setLastName("Glinskikh");
+        AuthorUuid savedAuthor = authorUUIDRepository.save(authorUUID);
+        System.out.println("Saved Author UUID: " + savedAuthor.getId());
     }
 }
