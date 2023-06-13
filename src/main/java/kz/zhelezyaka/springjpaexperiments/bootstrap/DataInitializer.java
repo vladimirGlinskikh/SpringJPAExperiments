@@ -2,8 +2,10 @@ package kz.zhelezyaka.springjpaexperiments.bootstrap;
 
 import kz.zhelezyaka.springjpaexperiments.domain.AuthorUuid;
 import kz.zhelezyaka.springjpaexperiments.domain.Book;
+import kz.zhelezyaka.springjpaexperiments.domain.BookUuid;
 import kz.zhelezyaka.springjpaexperiments.repositories.AuthorUUIDRepository;
 import kz.zhelezyaka.springjpaexperiments.repositories.BookRepository;
+import kz.zhelezyaka.springjpaexperiments.repositories.BookUuidRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -13,10 +15,12 @@ import org.springframework.stereotype.Component;
 public class DataInitializer implements CommandLineRunner {
     private final BookRepository bookRepository;
     private final AuthorUUIDRepository authorUUIDRepository;
+    private final BookUuidRepository bookUuidRepository;
 
-    public DataInitializer(BookRepository bookRepository, AuthorUUIDRepository authorUUIDRepository) {
+    public DataInitializer(BookRepository bookRepository, AuthorUUIDRepository authorUUIDRepository, BookUuidRepository bookUuidRepository) {
         this.bookRepository = bookRepository;
         this.authorUUIDRepository = authorUUIDRepository;
+        this.bookUuidRepository = bookUuidRepository;
     }
 
     @Override
@@ -54,5 +58,10 @@ public class DataInitializer implements CommandLineRunner {
         authorUUID.setLastName("Glinskikh");
         AuthorUuid savedAuthor = authorUUIDRepository.save(authorUUID);
         System.out.println("Saved Author UUID: " + savedAuthor.getId());
+
+        BookUuid bookUuid = new BookUuid();
+        bookUuid.setTitle("All About UUIDs");
+        BookUuid savedBookUuid = bookUuidRepository.save(bookUuid);
+        System.out.println("Saved Book UUID: " + savedBookUuid.getId());
     }
 }
