@@ -1,8 +1,10 @@
 package kz.zhelezyaka.springjpaexperiments;
 
 import kz.zhelezyaka.springjpaexperiments.domain.AuthorUuid;
+import kz.zhelezyaka.springjpaexperiments.domain.BookNatural;
 import kz.zhelezyaka.springjpaexperiments.domain.BookUuid;
 import kz.zhelezyaka.springjpaexperiments.repositories.AuthorUUIDRepository;
+import kz.zhelezyaka.springjpaexperiments.repositories.BookNaturalRepository;
 import kz.zhelezyaka.springjpaexperiments.repositories.BookRepository;
 import kz.zhelezyaka.springjpaexperiments.repositories.BookUuidRepository;
 import org.junit.jupiter.api.MethodOrderer;
@@ -30,6 +32,19 @@ public class MySQLIntegrationTest {
 
     @Autowired
     BookUuidRepository bookUuidRepository;
+
+    @Autowired
+    BookNaturalRepository bookNaturalRepository;
+
+    @Test
+    void bookNaturalTest() {
+        BookNatural bookNatural = new BookNatural();
+        bookNatural.setTitle("My Book");
+        BookNatural saved = bookNaturalRepository.save(bookNatural);
+
+        BookNatural fetched = bookNaturalRepository.getById(saved.getTitle());
+        assertThat(fetched).isNotNull();
+    }
 
     @Test
     void testBookUuid() {
