@@ -3,10 +3,9 @@ package kz.zhelezyaka.springjpaexperiments;
 import kz.zhelezyaka.springjpaexperiments.domain.AuthorUuid;
 import kz.zhelezyaka.springjpaexperiments.domain.BookNatural;
 import kz.zhelezyaka.springjpaexperiments.domain.BookUuid;
-import kz.zhelezyaka.springjpaexperiments.repositories.AuthorUUIDRepository;
-import kz.zhelezyaka.springjpaexperiments.repositories.BookNaturalRepository;
-import kz.zhelezyaka.springjpaexperiments.repositories.BookRepository;
-import kz.zhelezyaka.springjpaexperiments.repositories.BookUuidRepository;
+import kz.zhelezyaka.springjpaexperiments.domain.composite.AuthorComposite;
+import kz.zhelezyaka.springjpaexperiments.domain.composite.NameId;
+import kz.zhelezyaka.springjpaexperiments.repositories.*;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -35,6 +34,24 @@ public class MySQLIntegrationTest {
 
     @Autowired
     BookNaturalRepository bookNaturalRepository;
+
+    @Autowired
+    AuthorCompositeRepository authorCompositeRepository;
+
+    @Test
+    void authorCompositeTest() {
+        NameId nameId = new NameId("Vladimir", "G");
+        AuthorComposite authorComposite = new AuthorComposite();
+        authorComposite.setFirstName(nameId.getFirstName());
+        authorComposite.setLastName(nameId.getLastName());
+        authorComposite.setCountry("KZ");
+
+        AuthorComposite saved = authorCompositeRepository.save(authorComposite);
+        assertThat(saved).isNotNull();
+
+        AuthorComposite fetched = authorCompositeRepository.getById(nameId);
+        assertThat(fetched).isNotNull();
+    }
 
     @Test
     void bookNaturalTest() {
