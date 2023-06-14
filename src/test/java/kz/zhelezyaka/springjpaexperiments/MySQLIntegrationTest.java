@@ -4,6 +4,7 @@ import kz.zhelezyaka.springjpaexperiments.domain.AuthorUuid;
 import kz.zhelezyaka.springjpaexperiments.domain.BookNatural;
 import kz.zhelezyaka.springjpaexperiments.domain.BookUuid;
 import kz.zhelezyaka.springjpaexperiments.domain.composite.AuthorComposite;
+import kz.zhelezyaka.springjpaexperiments.domain.composite.AuthorEmbedded;
 import kz.zhelezyaka.springjpaexperiments.domain.composite.NameId;
 import kz.zhelezyaka.springjpaexperiments.repositories.*;
 import org.junit.jupiter.api.MethodOrderer;
@@ -37,6 +38,21 @@ public class MySQLIntegrationTest {
 
     @Autowired
     AuthorCompositeRepository authorCompositeRepository;
+
+    @Autowired
+    AuthorEmbeddedRepository authorEmbeddedRepository;
+
+    @Test
+    void authorEmbeddedTest() {
+        NameId nameId = new NameId("Vladimir", "G");
+        AuthorEmbedded authorEmbedded = new AuthorEmbedded(nameId);
+
+        AuthorEmbedded saved = authorEmbeddedRepository.save(authorEmbedded);
+        assertThat(saved).isNotNull();
+
+        AuthorEmbedded fetched = authorEmbeddedRepository.getById(nameId);
+        assertThat(fetched).isNotNull();
+    }
 
     @Test
     void authorCompositeTest() {
